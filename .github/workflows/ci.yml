@@ -9,9 +9,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
     steps:
       - uses: actions/checkout@v4          # get your code onto the runner
       - uses: actions/setup-node@v4        # install Node
         with:
-          node-version: 22                 # match your local Node
+          node-version: ${{ matrix.node-version }}
       - run: npm test                      # if this fails, the check turns red

@@ -1,0 +1,17 @@
+# Runs on every push to main and every pull request.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4          # get your code onto the runner
+      - uses: actions/setup-node@v4        # install Node
+        with:
+          node-version: 22                 # match your local Node
+      - run: npm test                      # if this fails, the check turns red

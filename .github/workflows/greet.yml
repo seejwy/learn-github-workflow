@@ -1,0 +1,16 @@
+name: Greet
+
+on:
+  workflow_dispatch: # adds the "Run workflow" button
+    inputs:
+      name:
+        description: Who to greet
+        default: world
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, $NAME!"
+        env:
+          NAME: ${{ inputs.name }} # pass input via env, never paste ${{ }} straight into run:
